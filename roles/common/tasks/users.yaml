@@ -1,0 +1,22 @@
+- name: create solana group
+  become: true
+  become_user: root
+  group:
+    name: solana
+    state: present
+
+- name: create solana user
+  become: true
+  become_user: root
+  user:
+    name: solana
+    create_home: yes
+    groups: solana
+    shell: /bin/bash
+
+- name: Ensure solana build is in path for solana user
+  become: true
+  become_user: root
+  lineinfile:
+    path: /home/solana/.bashrc
+    line: 'export PATH=/mnt/solana/target/release:$PATH'

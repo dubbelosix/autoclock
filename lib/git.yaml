@@ -1,0 +1,8 @@
+- name: repositories updated 
+  git:
+    repo: "git@github.com:{{ organization }}/{{ repo_name }}"
+    dest: "/home/ubuntu/{{ repo_name }}"
+    version: "{{ repo_version }}" 
+    accept_hostkey: yes
+    force: yes
+
