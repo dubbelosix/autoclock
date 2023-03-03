@@ -1,0 +1,4 @@
+---
+accounts_disk: "nvme1n1"
+swap_mb: 100000
+
