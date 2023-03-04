@@ -3,3 +3,4 @@
   hosts: "validators"
   roles:
     - "./roles/common"
+    - "./roles/jito"

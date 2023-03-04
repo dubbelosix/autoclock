@@ -1,0 +1,18 @@
+- name: add jito chrony source
+  become: true
+  become_user: root
+  copy:
+    content: "server {{ jito_ntp }} iburst"
+    dest: /etc/chrony/sources.d/jito-ntp-server.sources
+    force: true
+    group: root
+    owner: root
+    mode: 0555
+
+- name: restart chronyd
+  become: true
+  become_user: root
+  ansible.builtin.systemd:
+    name: chrony
+    state: started
+    enabled: yes

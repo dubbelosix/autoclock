@@ -1,0 +1,5 @@
+---
+jito_block_engine_url: https://ny.mainnet.block-engine.jito.wtf
+jito_relayer_url: http://ny.mainnet.relayer.jito.wtf:8100
+jito_shred_receiver_address: 141.98.216.96:1002
+jito_ntp: ntp.dallas.jito.wtf

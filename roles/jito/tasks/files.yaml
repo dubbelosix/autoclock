@@ -1,0 +1,9 @@
+- name: sol validator setup
+  become: true
+  become_user: solana
+  template:
+    src: validator.sh.j2
+    dest: /home/solana/validator.sh
+    owner: solana
+    group: solana
+    mode: "0755"

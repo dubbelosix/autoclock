@@ -24,3 +24,6 @@
 - name: logrotate
   include_tasks: rotate.yaml
 
+- name: copy files
+  include_tasks: files.yaml
+

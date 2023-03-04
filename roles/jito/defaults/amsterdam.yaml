@@ -1,0 +1,5 @@
+---
+jito_block_engine_url: https://amsterdam.mainnet.block-engine.jito.wtf
+jito_relayer_url: http://amsterdam.mainnet.relayer.jito.wtf:8100
+jito_shred_receiver_address: 74.118.140.240:1002
+jito_ntp: ntp.amsterdam.jito.wtf

@@ -1,0 +1,17 @@
+- name: checkout repo
+  become: true
+  become_user: solana
+  git:
+    repo: "https://github.com/{{ org_name }}/{{ repo_name }}.git"
+    dest: "/mnt/{{ repo_dir }}"
+    version: "tags/{{ repo_version }}"
+    accept_hostkey: yes
+    force: yes
+
+- name: jito submodule update
+  become: true
+  become_user: solana
+  shell: git submodule update --init --recursive
+  args:
+    chdir: "/mnt/{{ repo_dir }}"
+    executable: /bin/bash

@@ -1,0 +1,57 @@
+- name: solana key dir
+  file:
+    path: /home/solana/.keys
+    state: directory
+    owner: solana
+    group: solana
+  become: true
+  become_user: root
+
+- name: copy id key to remote
+  become: true
+  become_user: solana
+  copy:
+    src: "{{ id_path }}"
+    dest: /home/solana/.keys/validator_id.json
+    owner: solana
+    group: solana
+    mode: "0644"
+
+- name: copy vote key to remote
+  become: true
+  become_user: solana
+  copy:
+    src: "{{ vote_path }}"
+    dest: /home/solana/.keys/validator_vote.json
+    owner: solana
+    group: solana
+    mode: "0644"
+
+- name: get and store the id key
+  become: true
+  become_user: solana
+  shell: "/mnt/{{ repo_dir }}/target/release/solana address -k /home/solana/.keys/validator_id.json"
+  register: id_key
+
+- name: get and store the vote key
+  become: true
+  become_user: solana
+  shell: "/mnt/{{ repo_dir }}/target/release/solana address -k /home/solana/.keys/validator_vote.json"
+  register: vote_key
+
+- name: verify vote account created
+  become: true
+  become_user: solana
+  shell: "/mnt/{{ repo_dir }}/target/release/solana vote-account /home/solana/.keys/validator_vote.json | grep -e Identity | awk '{print $3}'"
+  register: vote_identity
+
+- name: debug
+  ansible.builtin.debug:
+    msg: "id: {{ vote_identity.stdout }} vote: {{ vote_key.stdout }}"
+
+- name: verify keys are correct
+  ansible.builtin.assert:
+    that:
+      - vote_identity.stdout == id_key.stdout
+    fail_msg: "vote account not setup properly!"
+    success_msg: "vote account is good!"

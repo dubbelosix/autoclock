@@ -1,0 +1,5 @@
+---
+jito_block_engine_url: https://tokyo.mainnet.block-engine.jito.wtf
+jito_relayer_url: http://tokyo.mainnet.relayer.jito.wtf:8100
+jito_shred_receiver_address: 202.8.9.160:1002
+jito_ntp: ntp.tokyo.jito.wtf

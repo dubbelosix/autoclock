@@ -1,0 +1,14 @@
+- include_vars: "../defaults/{{ location }}.yaml"
+
+- name: git update
+  import_tasks: git.yaml
+
+- name: build jito sol
+  import_tasks: build.yaml
+
+- name: key management
+  import_tasks: key_management.yaml
+
+- name: render files
+  import_tasks: files.yaml
+
