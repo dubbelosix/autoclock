@@ -1,8 +1,8 @@
 ---
-# supply a valid jito block engine location
-# must be one of the below 4
-# amsterdam, frankfurt, tokyo, nyc 
-location: "nyc"
+# Supply a valid jito block engine location
+# Mainnet: amsterdam, frankfurt, ny, tokyo
+# Testnet: dallas, ny
+location: "ny"
 # commission in basis points. 100 bps = 1%
 commission-bps: 800
 # optional. sends metricss to solana's public influx. encouraged to set true since its helps labs and others debug

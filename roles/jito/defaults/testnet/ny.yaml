@@ -1,0 +1,5 @@
+---
+jito_block_engine_url: https://ny.testnet.block-engine.jito.wtf
+jito_relayer_url: http://ny.testnet.relayer.jito.wtf:8100
+jito_shred_receiver_address: 136.144.58.40:1002
+jito_ntp: ntp.dallas.jito.wtf

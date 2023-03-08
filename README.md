@@ -25,10 +25,14 @@ swap_mb: 100000
 * jito https://github.com/dubbelosix/autoclock/blob/master/roles/jito/defaults/main.yaml
 ```
 ---
-# supply a valid jito block engine location
-# must be one of the below 4
-# amsterdam, frankfurt, tokyo, nyc 
-location: "nyc"
+# 1. Supply a valid cluster
+# testnet, mainnet
+
+# 2. Supply a valid jito block engine location
+# mainnet: amsterdam, frankfurt, ny, tokyo 
+# testnet: dallas, ny
+location: "ny"
+
 # commission in basis points. 100 bps = 1%
 commission-bps: 800
 # optional. sends metricss to solana's public influx. encouraged to set true since its helps labs and others debug

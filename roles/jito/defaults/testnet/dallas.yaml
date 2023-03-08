@@ -1,0 +1,5 @@
+---
+jito_block_engine_url: https://dallas.testnet.block-engine.jito.wtf
+jito_relayer_url: http://dallas.testnet.relayer.jito.wtf:8100
+jito_shred_receiver_address: 147.28.154.132:1002
+jito_ntp: ntp.dallas.jito.wtf
