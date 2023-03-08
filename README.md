@@ -27,6 +27,7 @@ swap_mb: 100000
 ---
 # 1. Supply a valid cluster
 # testnet, mainnet
+cluster: "mainnet"
 
 # 2. Supply a valid jito block engine location
 # mainnet: amsterdam, frankfurt, ny, tokyo 
@@ -43,7 +44,7 @@ repo_name: "jito-solana"
 repo_dir: "jito-solana"
 repo_version: "v1.13.6-jito"
 ```
-* the location as mentioned in the comment needs to be one of the 4 - the validator parameters for block engine, relayer etc are set based on the location
+* the location as mentioned in the comment needs to be one of the 4 (for mainnet) or one of 2 (for testnet)  - the validator parameters for block engine, relayer etc are set based on the location
 * repo_version needs to be modified to whichever tag you want the validator to run. consult jito discord for the latest version expected to be run
 * other parameters can be left as is (most validator set commission to 800 basis points, but you can adjust that if you want to
 
