@@ -5,7 +5,7 @@
 * basic command
 * make sure to create `hosts.yaml` file using the `hosts.example.yaml` as a guide
 ```
-ansible-playbook setup.yaml -i hosts.yaml -e id_path=./keys/validator-keypair.json -e vote_path=./keys/vote-account-keypair.json -e region=ny -e cluster=testnet -e rpc_address=https://api.testnet.solana.com
+ansible-playbook setup.yaml -i hosts.yaml -e id_path=./keys/validator-keypair.json -e vote_path=./keys/vote-account-keypair.json -e region=ny -e cluster=testnet -e rpc_address=https://api.testnet.solana.com -e repo_version=1.14.16-jito
 ```
 
 * The above assumes that validator-keypair.json and vote-account-keypair.json have been generated using solana-keygen and that the vote-account has already been created. The ansible playbook executes the vote-account command to see that vote-account-keypair.json actually exists and is associated with validator-keypair.json. It will fail before starting the validator if that is not the case.
