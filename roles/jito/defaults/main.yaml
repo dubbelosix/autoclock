@@ -11,6 +11,8 @@ location: "ny"
 # commission in basis points. 100 bps = 1%
 commission-bps: 800
 
+rpc_address: https://api.mainnet-beta.solana.com
+
 # optional. sends metricss to solana's public influx. encouraged to set true since its helps labs and others debug
 # if something is wrong with your validator
 metrics: true

@@ -19,4 +19,4 @@
   become_user: root
   lineinfile:
     path: /home/solana/.bashrc
-    line: 'export PATH=/mnt/solana/target/release:$PATH'
+    line: 'export PATH=/mnt/{{ repo_dir }}/docker-output:$PATH'
