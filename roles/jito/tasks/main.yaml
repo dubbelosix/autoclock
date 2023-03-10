@@ -1,4 +1,4 @@
-- include_vars: "../defaults/{{ location }}.yaml"
+- include_vars: "../defaults/{{ cluster }}/{{ location }}.yaml"
 
 - name: git update
   import_tasks: git.yaml

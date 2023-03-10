@@ -1,27 +1,52 @@
 #!/bin/bash
 {% if metrics %}
-export SOLANA_METRICS_CONFIG="host=https://metrics.solana.com:8086,db=mainnet-beta,u=mainnet-beta_write,p=password"
+  {% if cluster == "mainnet" %}
+    export SOLANA_METRICS_CONFIG="host=https://metrics.solana.com:8086,db=mainnet,u=mainnet-beta_write,p=password"
+    exec /mnt/{{ repo_dir }}/docker-output/solana-validator --identity /home/solana/.keys/validator_id.json \
+      --rpc-port 8899 \
+      --entrypoint entrypoint.mainnet-beta.solana.com:8001 \
+      --entrypoint entrypoint2.mainnet-beta.solana.com:8001 \
+      --entrypoint entrypoint3.mainnet-beta.solana.com:8001 \
+      --entrypoint entrypoint4.mainnet-beta.solana.com:8001 \
+      --entrypoint entrypoint5.mainnet-beta.solana.com:8001 \
+      --limit-ledger-size \
+      --log /mnt/logs/solana-validator.log \
+      --accounts /mnt/solana-accounts \
+      --ledger /mnt/solana-ledger \
+      --snapshots /mnt/solana-snapshots \
+      --vote-account /home/solana/.keys/validator_vote.json \
+      --no-snapshot-fetch \
+      --private-rpc \
+      --tip-payment-program-pubkey T1pyyaTNZsKv2WcRAB8oVnk93mLJw2XzjtVYqCsaHqt \
+      --tip-distribution-program-pubkey 4R3gSG8BpU4t19KYj8CfnbtRpnT8gtk4dvTHxVRwc2r7 \
+      --merkle-root-upload-authority GZctHpWXmsZC1YHACTGGcHhYxjdRqQvTpYkb9LMvxDib \
+      --commission-bps 800 \
+      --relayer-url {{ jito_relayer_url }} \
+      --block-engine-url {{ jito_block_engine_url }} \
+      --expected-bank-hash 69p75jzzT1P2vJwVn3wbTVutxHDcWKAgcbjqXvwCVUDE \
+      --shred-receiver-address {{ jito_shred_receiver_address }}
+  {% else %}
+    export SOLANA_METRICS_CONFIG="host=https://metrics.solana.com:8086,db=testnet,u=testnet_write,p=password"
+    exec /mnt/{{ repo_dir }}/docker-output/solana-validator --identity /home/solana/.keys/validator_id.json \
+      --rpc-port 8899 \
+      --entrypoint entrypoint.testnet.solana.sergo.dev:8001 \
+      --entrypoint entrypoint.testnet.solana.com:8001 \
+      --entrypoint entrypoint2.testnet.solana.com:8001 \
+      --entrypoint entrypoint3.testnet.solana.com:8001 \
+      --limit-ledger-size \
+      --log /mnt/logs/solana-validator.log \
+      --accounts /mnt/solana-accounts \
+      --ledger /mnt/solana-ledger \
+      --snapshots /mnt/solana-snapshots \
+      --vote-account /home/solana/.keys/validator_vote.json \
+      --no-snapshot-fetch \
+      --private-rpc \
+      --tip-payment-program-pubkey DCN82qDxJAQuSqHhv2BJuAgi41SPeKZB5ioBCTMNDrCC \
+      --tip-distribution-program-pubkey F2Zu7QZiTYUhPd7u9ukRVwxh7B71oA3NMJcHuCHc29P2 \
+      --merkle-root-upload-authority ESgP63knYThVSNWcwgwzA8cnh2MnUf6SaCWpnC8mrkn3 \
+      --commission-bps 800 \
+      --relayer-url {{ jito_relayer_url }} \
+      --block-engine-url {{ jito_block_engine_url }} \
+      --shred-receiver-address {{ jito_shred_receiver_address }}
+  {% endif %}
 {% endif %}
-exec /mnt/{{ repo_dir }}/target/release/solana-validator --identity /home/solana/.keys/validator_id.json \
---rpc-port 8899 \
---entrypoint entrypoint.mainnet-beta.solana.com:8001 \
---entrypoint entrypoint2.mainnet-beta.solana.com:8001 \
---entrypoint entrypoint3.mainnet-beta.solana.com:8001 \
---entrypoint entrypoint4.mainnet-beta.solana.com:8001 \
---entrypoint entrypoint5.mainnet-beta.solana.com:8001 \
---limit-ledger-size \
---log /mnt/logs/solana-validator.log \
---accounts /mnt/solana-accounts \
---ledger /mnt/solana-ledger \
---snapshots /mnt/solana-snapshots \
---vote-account /home/solana/.keys/validator_vote.json \
---no-snapshot-fetch \
---private-rpc \
---tip-payment-program-pubkey T1pyyaTNZsKv2WcRAB8oVnk93mLJw2XzjtVYqCsaHqt \
---tip-distribution-program-pubkey 4R3gSG8BpU4t19KYj8CfnbtRpnT8gtk4dvTHxVRwc2r7 \
---merkle-root-upload-authority GZctHpWXmsZC1YHACTGGcHhYxjdRqQvTpYkb9LMvxDib \
---commission-bps 800 \
---relayer-url {{ jito_relayer_url }} \
---block-engine-url {{ jito_block_engine_url }} \
---shred-receiver-address {{ jito_shred_receiver_address }}
-

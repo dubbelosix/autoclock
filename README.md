@@ -3,11 +3,12 @@
 * c3.large machines have 2 disks. one of them is mounted to / and the other one has to be supplied in the defaults
 * install ansible locally and edit the hosts.yaml file in the root location to point to your validator's IP address and the ssh parameters
 * basic command
+* make sure to create `hosts.yaml` file using the `hosts.example.yaml` as a guide
 ```
-ansible-playbook setup.yaml -i hosts.yaml -e id_path=test-id.json -e vote_path=test-vote.json
+ansible-playbook setup.yaml -i hosts.yaml -e id_path=./keys/validator-keypair.json -e vote_path=./keys/vote-account-keypair.json -e region=ny -e cluster=testnet -e rpc_address=https://api.testnet.solana.com -e repo_version=v1.14.16-jito
 ```
 
-* the above assumes that test-id.json and test-vote.json have been generated using solana-keygen and that the vote-account has already been created. the ansible playbook executes the vote-account command to see that test-vote.json actually exists and is associated with test-id.json. it will fail before starting the validator if that is not the case
+* The above assumes that validator-keypair.json and vote-account-keypair.json have been generated using solana-keygen and that the vote-account has already been created. The ansible playbook executes the vote-account command to see that vote-account-keypair.json actually exists and is associated with validator-keypair.json. It will fail before starting the validator if that is not the case.
 
 # defaults
 
@@ -25,10 +26,15 @@ swap_mb: 100000
 * jito https://github.com/dubbelosix/autoclock/blob/master/roles/jito/defaults/main.yaml
 ```
 ---
-# supply a valid jito block engine location
-# must be one of the below 4
-# amsterdam, frankfurt, tokyo, nyc 
-location: "nyc"
+# 1. Supply a valid cluster
+# testnet, mainnet
+cluster: "mainnet"
+
+# 2. Supply a valid jito block engine location
+# mainnet: amsterdam, frankfurt, ny, tokyo 
+# testnet: dallas, ny
+location: "ny"
+
 # commission in basis points. 100 bps = 1%
 commission-bps: 800
 # optional. sends metricss to solana's public influx. encouraged to set true since its helps labs and others debug
@@ -39,7 +45,7 @@ repo_name: "jito-solana"
 repo_dir: "jito-solana"
 repo_version: "v1.13.6-jito"
 ```
-* the location as mentioned in the comment needs to be one of the 4 - the validator parameters for block engine, relayer etc are set based on the location
+* the location as mentioned in the comment needs to be one of the 4 (for mainnet) or one of 2 (for testnet)  - the validator parameters for block engine, relayer etc are set based on the location
 * repo_version needs to be modified to whichever tag you want the validator to run. consult jito discord for the latest version expected to be run
 * other parameters can be left as is (most validator set commission to 800 basis points, but you can adjust that if you want to
 
