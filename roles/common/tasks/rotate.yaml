@@ -21,6 +21,6 @@
         daily
         missingok
         postrotate
-          systemctl kill -s USR1 sol.service
+          systemctl kill -s USR1 solana-validator.service
         endscript
       }

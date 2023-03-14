@@ -1,9 +1,9 @@
-- name: setup sol.service
+- name: setup solana-validator.service
   become: true
   become_user: root
   copy:
-    src: sol.service
-    dest: /etc/systemd/system/sol.service
+    src: solana-validator.service
+    dest: /etc/systemd/system/solana-validator.service
     owner: root
     group: root
     mode: "0755"
