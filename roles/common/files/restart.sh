@@ -3,5 +3,5 @@ if [ $# -eq 0 ]
   then
     python3 /mnt/snapcheck.py
 fi
-sudo systemctl stop sol.service
-sudo systemctl start sol.service
+sudo systemctl stop solana-validator.service
+sudo systemctl start solana-validator.service
