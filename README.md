@@ -1,16 +1,16 @@
 # Autoclock Validator
-* The autoclock validator script is thus far designed and tested only on c3.large [latitude](https://www.latitude.sh/) machines running ubuntu. Other OS and machine/disk configurations are not tested yet, but do feel free to fork or submit PRs to support additional infra.
-* c3.large machines have 2 disks. One of these is mounted to / and the other one needs to be supplied in the defaults.
-* Install ansible locally and edit the hosts.yaml file in the root location to point to your validator's IP address and the ssh parameters
+* The purpose of this Ansible playbook is to provide a fast and straightforward way to spin up a Solana validator. The Autoclock validator script has only been designed and tested on c3.large [latitude](https://www.latitude.sh/) machines running ubuntu thus far. Other OS and machine/disk configurations are untested yet, but feel free to fork or submit PRs to support additional infra.
+* C3.large machines have 2 disks. One of these is mounted to / and the other one needs to be supplied in the defaults.
+* Install ansible locally and edit the hosts.yaml file in the root location to point to your validator's IP address and the ssh parameters.
 * basic command
-* make sure to create `hosts.yaml` file using the `hosts.example.yaml` as a guide
+* Make sure to create `hosts.yaml` file using the `hosts.example.yaml` as a guide.
 ```
 ansible-playbook setup.yaml -i hosts.yaml -e id_path=./keys/validator-keypair.json -e vote_path=./keys/vote-account-keypair.json -e region=ny -e cluster=testnet -e rpc_address=https://api.testnet.solana.com -e repo_version=v1.14.16-jito
 ```
 
 * The above assumes that validator-keypair.json and vote-account-keypair.json have been generated using solana-keygen and that the vote-account has already been created. The ansible playbook executes the vote-account command to see that vote-account-keypair.json actually exists and is associated with validator-keypair.json. It will fail before starting the validator if that is not the case.
 
-# defaults
+# Defaults
 
 there are 2 main defaults files to edit 
 * common https://github.com/dubbelosix/autoclock/blob/master/roles/common/defaults/main.yaml
@@ -35,7 +35,7 @@ cluster: "mainnet"
 # testnet: dallas, ny
 location: "ny"
 
-# commission in basis points. 100 bps = 1%
+# Commission is in basis points (bps). 100 bps = 1%
 commission-bps: 800
 # optional. sends metricss to solana's public influx. encouraged to set true since its helps labs and others debug
 # if something is wrong with your validator
