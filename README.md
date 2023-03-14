@@ -1,4 +1,4 @@
-# autoclock
+# Autoclock Validator
 * the autoclock script is designed and tested only on c3.large latitude machines running ubuntu. Other OS and machine/disk configurations are not tested, but do feel free to fork or submit PRs to support additional infra
 * c3.large machines have 2 disks. one of them is mounted to / and the other one has to be supplied in the defaults
 * install ansible locally and edit the hosts.yaml file in the root location to point to your validator's IP address and the ssh parameters
