@@ -12,7 +12,7 @@ ansible-playbook setup.yaml -i hosts.yaml -e id_path=./keys/validator-keypair.js
 
 # Defaults
 
-there are 2 main defaults files to edit 
+There are 2 main defaults files to edit: 
 * common https://github.com/dubbelosix/autoclock/blob/master/roles/common/defaults/main.yaml
 ```
 ---
@@ -37,8 +37,7 @@ location: "ny"
 
 # Commission is in basis points (bps). 100 bps = 1%
 commission-bps: 800
-# optional. sends metricss to solana's public influx. encouraged to set true since its helps labs and others debug
-# if something is wrong with your validator
+# Optional. This sends metricss to Solana's public influx and it is encouraged to set to true since it helps Solana Labs and others debug your validator as well as network issues.
 metrics: true
 org_name: "jito-foundation"
 repo_name: "jito-solana"
