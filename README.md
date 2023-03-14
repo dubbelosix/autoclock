@@ -76,25 +76,21 @@ ssh*****
 screen -S sol
 ```
 
-### Step 4: Clone the autoclock-validator repo
-
+### 4) Clone autoclock-validator repo
 ```
 git clone https://github.com/overclock-validator/autoclock-validator.git
 ```
 
-### Step 5: cd into the autoclock-validator folder
-
+### 5) cd into autoclock-validator folder
 ```
 cd autoclock-validator
 ```
 
-### Step 6: Run the ansible command
-
-- this command can take between 10-20 minutes based on the specs of the machine
-- it takes long because it does everything necessary to start the validator (format disks, checkout the solana repo and build it, download the latest snapshot, etc.)
-- make sure that the solana_version is up to date (see below)
-- check the values set in `defaults/main.yml` and update to the values you want
-
+### 6) Run the Ansible command
 ```
 time ansible-playbook runner.yaml
 ```
+- This command can take between 10-20 minutes based on the specs of the machine
+- It takes long because it does everything necessary to start the validator (format disks, checkout the solana repo and build it, download the latest snapshot, etc.)
+- Make sure that the solana_version is up to date (see below)
+- Check the values set in `defaults/main.yml` and update to the values you want
