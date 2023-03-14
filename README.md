@@ -61,28 +61,31 @@ repo_version: "v1.13.6-jito"
 * support skipping disk setup
 * support flag to make starting the validator optional
 
+### 1) Install Ansible locally
+```
+https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html
+```
 
-2) Start a screen session
+### 2) SSH into your server
+```
+ssh*****
+```
+
+### 3) Start a screen session
 ```
 screen -S sol
 ```
 
-### Step 3: Install ansible
+### Step 4: Clone the autoclock-validator repo
 
 ```
-sudo apt-get update && sudo apt-get install ansible -y
+git clone https://github.com/overclock-validator/autoclock-validator.git
 ```
 
-### Step 4: Clone the autoclock-rpc repository
+### Step 5: cd into the autoclock-validator folder
 
 ```
-git clone https://github.com/overclock-validator/autoclock-rpc.git
-```
-
-### Step 5: cd into the autoclock-rpc folder
-
-```
-cd autoclock-rpc
+cd autoclock-validator
 ```
 
 ### Step 6: Run the ansible command
