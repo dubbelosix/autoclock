@@ -1,7 +1,7 @@
 # Autoclock Validator
 * The purpose of this Ansible playbook is to provide a fast and straightforward way to spin up a Solana validator. The Autoclock validator script has only been designed and tested on c3.large [Latitude](https://www.latitude.sh/) machines running ubuntu thus far. Other OS and machine/disk configurations are untested yet, but feel free to fork or submit PRs to support additional infra.
 * C3.large machines have 2 disks. One of these is mounted to / and the other one needs to be supplied in the defaults.
-* Install ansible locally and edit the hosts.yaml file in the root location to point to your validator's IP address and the ssh parameters.
+* Install Ansible locally and edit the hosts.yaml file in the root location to point to your validator's IP address and the ssh parameters.
 * basic command
 * Make sure to create `hosts.yaml` file using the `hosts.example.yaml` as a guide.
 ```
