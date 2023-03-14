@@ -1,9 +1,12 @@
 # Autoclock Validator
-* The purpose of this Ansible playbook is to provide a fast and straightforward way to spin up a Solana validator. The Autoclock validator script has only been designed and tested on c3.large [Latitude](https://www.latitude.sh/) machines running ubuntu thus far. Other OS and machine/disk configurations are untested yet, but feel free to fork or submit PRs to support additional infra.
+* The purpose of this Ansible playbook is to provide a fast and straightforward way to spin up a Solana validator. 
+* The Autoclock validator script has only been designed and tested on c3.large [Latitude](https://www.latitude.sh/) machines running ubuntu thus far. Other OS and machine/disk configurations are untested yet, but feel free to fork or submit PRs to support additional infra.
 * C3.large machines have 2 disks. One of these is mounted to / and the other one needs to be supplied in the defaults.
-* Install Ansible locally and edit the hosts.yaml file in the root location to point to your validator's IP address and the ssh parameters.
-* basic command
-* Make sure to create `hosts.yaml` file using the `hosts.example.yaml` as a guide.
+
+1) Install Ansible locally https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html
+2) Edit the hosts.yaml file in the root location to point to your validator's IP address and the ssh parameters.
+3) basic command (???)
+4) Make sure to create `hosts.yaml` file using the `hosts.example.yaml` as a guide.
 ```
 ansible-playbook setup.yaml -i hosts.yaml -e id_path=./keys/validator-keypair.json -e vote_path=./keys/vote-account-keypair.json -e region=ny -e cluster=testnet -e rpc_address=https://api.testnet.solana.com -e repo_version=v1.14.16-jito
 ```
@@ -13,14 +16,14 @@ ansible-playbook setup.yaml -i hosts.yaml -e id_path=./keys/validator-keypair.js
 # Defaults
 
 There are 2 main defaults files to edit: 
-* common https://github.com/dubbelosix/autoclock/blob/master/roles/common/defaults/main.yaml
+* common https://github.com/overclock-validator/autoclock-validator/blob/master/roles/common/defaults/main.yaml
 ```
 ---
 ledger_disk: "nvme1n1"
 swap_mb: 100000
 ```
 * ledger_disk needs to point to the disk on the c3.large that is not currently mounted, which you can verify this using `sudo fdisk -l`
-* The ansible script puts ledger on a separate disk and everything else (accounts, snapshots, OS) on the default disk (ledger and snapshot are both write intensive, so its good to separate those to different disks)
+* The ansible script puts ledger on a separate disk and everything else (accounts, snapshots, OS) on the default disk (ledger and snapshot are both write intensive, so it's good to separate those to different disks)
 * By default, swap_mb is set to 100gb, but for validators it's not that helpful outside of preventing a crash. If your machine is swapping however, there are other issues that need to be solved anyway.
 
 * jito https://github.com/dubbelosix/autoclock/blob/master/roles/jito/defaults/main.yaml
