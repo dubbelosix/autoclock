@@ -1,6 +1,6 @@
 # Autoclock Validator
-* The purpose of this Ansible playbook is to provide a fast and straightforward way to spin up a Solana validator. 
-* The Autoclock validator script has only been designed and tested on c3.large [Latitude](https://www.latitude.sh/) machines running ubuntu thus far. Other OS and machine/disk configurations are untested yet, but feel free to fork or submit PRs to support additional infra.
+* The purpose of this Ansible playbook is to provide a fast and straightforward way to spin up a Solana validator running the Jito client. 
+* The Autoclock validator script has been designed and tested on c3.large [Latitude](https://www.latitude.sh/) servers running Ubuntu thus far. Other OS and machine/disk configurations are untested yet, but feel free to fork or submit PRs to support additional infra.
 * C3.large machines have 2 disks. One of these is mounted to / and the other one needs to be supplied in the defaults.
 
 ## Steps
@@ -27,7 +27,7 @@ swap_mb: 100000
 * The ansible script puts ledger on a separate disk and everything else (accounts, snapshots, OS) on the default disk (ledger and snapshot are both write intensive, so it's good to separate those to different disks)
 * By default, swap_mb is set to 100gb, but for validators it's not that helpful outside of preventing a crash. If your machine is swapping however, there are other issues that need to be solved anyway.
 
-* jito https://github.com/dubbelosix/autoclock/blob/master/roles/jito/defaults/main.yaml
+* jito https://github.com/overclock-validator/autoclock-validator/blob/master/roles/jito/defaults/main.yaml
 ```
 ---
 # 1. Supply a valid cluster
@@ -60,31 +60,50 @@ repo_version: "v1.13.6-jito"
 * support different disk configurations
 * support skipping disk setup
 * support flag to make starting the validator optional
+* support Labs client as well, later Firedancer
 
-### 1) Install Ansible locally
-```
-https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html
-```
+### 0) If you don't already have a validator, start by following the steps in the Solana docs:
+1) Install Solana Tool Suite https://docs.solana.com/cli/install-solana-cli-tools
+2) Create validator identity https://docs.solana.com/running-validator/validator-start#generate-identity
+3) Create withdrawer account https://docs.solana.com/running-validator/validator-start#create-authorized-withdrawer-account
+4) Create vote account https://docs.solana.com/running-validator/validator-start#create-authorized-withdrawer-account
+5) *******
 
-### 2) SSH into your server
+### 1) SSH into your server
 ```
 ssh*****
 ```
 
-### 3) Start a screen session
+### 2) Start a screen session
 ```
 screen -S sol
 ```
 
-### 4) Clone autoclock-validator repo
+### 3) Install Ansible
+```
+sudo apt-get update && sudo apt-get install ansible -y
+```
+
+### 4) Clone autoclock-validator repo and cd into folder
 ```
 git clone https://github.com/overclock-validator/autoclock-validator.git
 ```
-
-### 5) cd into autoclock-validator folder
 ```
 cd autoclock-validator
 ```
+
+### 5) Edit the hosts.yaml file in the root location to point to your validator's IP address and the ssh parameters
+
+### 6) Edit the common main.yaml file https://github.com/overclock-validator/autoclock-validator/blob/master/roles/common/defaults/main.yaml
+
+### 7) Edit the jito main.yaml file
+
+### 8) Run the Ansible command
+* Below is an example
+```
+ansible-playbook setup.yaml -i hosts.yaml -e id_path=./keys/validator-keypair.json -e vote_path=./keys/vote-account-keypair.json -e region=ny -e cluster=testnet -e rpc_address=https://api.testnet.solana.com -e repo_version=v1.14.16-jito
+```
+
 
 ### 6) Run the Ansible command
 ```
@@ -94,3 +113,10 @@ time ansible-playbook runner.yaml
 - It takes long because it does everything necessary to start the validator (format disks, checkout the solana repo and build it, download the latest snapshot, etc.)
 - Make sure that the solana_version is up to date (see below)
 - Check the values set in `defaults/main.yml` and update to the values you want
+
+
+
+### 1) Install Ansible locally
+```
+https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html
+```
