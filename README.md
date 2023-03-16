@@ -9,7 +9,7 @@
 1) Install Solana Tool Suite https://docs.solana.com/cli/install-solana-cli-tools
 2) Create validator identity keypair https://docs.solana.com/running-validator/validator-start#generate-identity
 3) Create withdrawer account keypair https://docs.solana.com/running-validator/validator-start#create-authorized-withdrawer-account
-4) Create vote account keypair https://docs.solana.com/running-validator/validator-start#create-authorized-withdrawer-account
+4) Create vote account keypair https://docs.solana.com/running-validator/validator-start#create-vote-account
 
 #### 1) Install Ansible locally
 ```
@@ -24,7 +24,7 @@ https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.
 * This step assumes that validator-keypair.json and vote-account-keypair.json have been generated using solana-keygen and that the vote-account has already been created. The Ansible playbook executes the vote-account command to see that vote-account-keypair.json actually exists and is associated with validator-keypair.json. It will fail before starting the validator if that is not the case.
 * Make sure that the solana_version is up to date and that you specify the correct cluster
 ```
-ansible-playbook setup.yaml -i hosts.yaml -e id_path=./keys/validator-keypair.json -e vote_path=./keys/vote-account-keypair.json -e region=ny -e cluster=mainnet -e rpc_address=https://api.mainnet-beta.solana.com -e repo_version=v1.14.16-jito
+ansible-playbook setup.yaml -i hosts.yaml -e id_path=./keys/validator-keypair.json -e vote_path=./keys/vote-account-keypair.json -e region=ny -e cluster=mainnet -e rpc_address=https://api.mainnet-beta.solana.com -e repo_version=v1.13.6-jito
 ```
 
 #### 4) Edit and configure the common main.yaml file 
