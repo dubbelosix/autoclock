@@ -22,7 +22,7 @@ https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.
 
 #### 3) Edit and configure the Ansible command and run it
 * This step assumes that validator-keypair.json and vote-account-keypair.json have been generated using solana-keygen and that the vote-account has already been created. The Ansible playbook executes the vote-account command to see that vote-account-keypair.json actually exists and is associated with validator-keypair.json. It will fail before starting the validator if that is not the case.
-* Make sure that the solana_version is up to date and that you specify the correct cluster
+* Make sure that the solana_version is up-to-date and that you specify the correct cluster
 ```
 ansible-playbook setup.yaml -i hosts.yaml -e id_path=./keys/validator-keypair.json -e vote_path=./keys/vote-account-keypair.json -e region=ny -e cluster=mainnet -e rpc_address=https://api.mainnet-beta.solana.com -e repo_version=v1.13.6-jito
 ```
@@ -64,9 +64,6 @@ repo_version: "v1.13.6-jito"
 * The repo_version needs to be modified to whichever tag you want the validator to run. Consult Jito discord (link below) for the latest version expected to be run.
 * Other parameters can be left as is (most validators set commission to 800 basis points atm, but you can adjust that if you want to).
 
-
-### PART BELOW NEED TO FIX -- copy pasted part of autoclock-rpc with some monitoring steps
-
 #### 6) SSH into your new server
 
 #### 7) Start a screen session
@@ -74,12 +71,12 @@ repo_version: "v1.13.6-jito"
 screen -S sol
 ```
 
-#### 9) Switch to the ubuntu user with:
+#### 8) Switch to the solana user with:
 ```
 sudo su - solana
 ```
 
-#### 8) Check the status
+#### 9) Check the status
 ```
 source ~/.profile
 solana-validator --ledger /mnt/solana-ledger monitor
@@ -114,8 +111,9 @@ If you see the message above, then everything is working fine! gratz. You have a
 * Example: https://solana.fm/address/C1ocKDYMCm2ooWptMMnpd5VEB2Nx4UMJgRuYofysyzcA
 
 ### Helpful Links
+* [Jito Discord](https://discord.gg/jito)
+* [Jito Docs](https://jito.notion.site/Jito-Resources-76fac1863c23457198f46657b54d7a6a)
 * [Solana Discord](https://discord.gg/ZmYnApcbTj) (validator-support channel)
-* Jito Discord ***ADD INVITE LINK***
 * [Overclock Discord](https://discord.gg/M8KZh4Waz6) (autoclock channel)
 
 ### TODO
