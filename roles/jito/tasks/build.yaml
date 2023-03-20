@@ -1,7 +1,7 @@
 - name: build solana
   become: true
   become_user: root
-  shell: "source /home/solana/.cargo/env && /mnt/{{ repo_dir }}/cargo stable build --release"
+  shell: "cd /mnt/{{ repo_dir }} && ./cargo stable build --release"
   args:
     chdir: "/mnt/{{ repo_dir }}"
     executable: /bin/bash
