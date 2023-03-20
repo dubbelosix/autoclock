@@ -1,7 +1,7 @@
 - name: build solana
   become: true
   become_user: root
-  shell: "git config --global --add safe.directory /mnt/{{ repo_dir }} && cd /mnt/{{ repo_dir }} && ./f"
+  shell: "source /home/solana/.cargo/env && /mnt/{{ repo_dir }}/cargo stable build --release"
   args:
     chdir: "/mnt/{{ repo_dir }}"
     executable: /bin/bash
