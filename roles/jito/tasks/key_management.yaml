@@ -30,20 +30,20 @@
 - name: get and store the id key
   become: true
   become_user: solana
-  shell: "/mnt/{{ repo_dir }}/docker-output/solana address -k /home/solana/.keys/validator_id.json"
+  shell: "/mnt/{{ repo_dir }}/target/release/solana address -k /home/solana/.keys/validator_id.json"
   register: id_key
 
 - name: get and store the vote key
   become: true
   become_user: solana
-  shell: "/mnt/{{ repo_dir }}/docker-output/solana address -k /home/solana/.keys/validator_vote.json"
+  shell: "/mnt/{{ repo_dir }}/target/release/solana address -k /home/solana/.keys/validator_vote.json"
   register: vote_key
 
 - name: verify vote account created
   become: true
   become_user: solana
   shell: |
-    /mnt/{{ repo_dir }}/docker-output/solana vote-account /home/solana/.keys/validator_vote.json -u {{ rpc_address }} | grep -e Identity | awk '{print $3}'
+    /mnt/{{ repo_dir }}/target/release/solana vote-account /home/solana/.keys/validator_vote.json -u {{ rpc_address }} | grep -e Identity | awk '{print $3}'
   register: vote_identity
 
 - name: debug

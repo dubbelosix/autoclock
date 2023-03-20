@@ -2,7 +2,7 @@
 {% if metrics %}
   {% if cluster == "mainnet" %}
     export SOLANA_METRICS_CONFIG="host=https://metrics.solana.com:8086,db=mainnet,u=mainnet-beta_write,p=password"
-    exec /mnt/{{ repo_dir }}/docker-output/solana-validator --identity /home/solana/.keys/validator_id.json \
+    exec /mnt/{{ repo_dir }}/target/release/solana-validator --identity /home/solana/.keys/validator_id.json \
       --rpc-port 8899 \
       --entrypoint entrypoint.mainnet-beta.solana.com:8001 \
       --entrypoint entrypoint2.mainnet-beta.solana.com:8001 \
@@ -27,7 +27,7 @@
       --shred-receiver-address {{ jito_shred_receiver_address }}
   {% else %}
     export SOLANA_METRICS_CONFIG="host=https://metrics.solana.com:8086,db=testnet,u=testnet_write,p=password"
-    exec /mnt/{{ repo_dir }}/docker-output/solana-validator --identity /home/solana/.keys/validator_id.json \
+    exec /mnt/{{ repo_dir }}/target/release/solana-validator --identity /home/solana/.keys/validator_id.json \
       --rpc-port 8899 \
       --entrypoint entrypoint.testnet.solana.sergo.dev:8001 \
       --entrypoint entrypoint.testnet.solana.com:8001 \
