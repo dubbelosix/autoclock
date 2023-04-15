@@ -29,7 +29,8 @@
 - name: Write swap entry in fstab
   become: true
   become_user: root
-  mount: name=none
+  mount:
+    name=none
     src=/mnt/swapfile
     fstype=swap
     opts=sw
