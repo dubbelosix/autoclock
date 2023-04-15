@@ -2,5 +2,5 @@
 - name: "playbook runner"
   hosts: "validators"
   roles:
-    #    - "./roles/common"
+    - "./roles/common"
     - "./roles/jito"
