@@ -9,7 +9,7 @@ cluster: mainnet
 location: "ny"
 
 # commission in basis points. 100 bps = 1%
-commission-bps: 800
+commission_bps: 800
 
 rpc_address: https://api.mainnet-beta.solana.com
 

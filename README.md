@@ -52,7 +52,7 @@ cluster: "mainnet"
 location: "ny"
 
 # Commission is in basis points (bps). 100 bps = 1%
-commission-bps: 800
+commission_bps: 800
 # Optional. This sends metricss to Solana's public influx and it is encouraged to set to true since it helps Solana Labs and others debug your validator as well as network issues.
 metrics: true
 org_name: "jito-foundation"
